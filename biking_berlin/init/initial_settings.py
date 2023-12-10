@@ -13,10 +13,11 @@ from pygame import display, Surface, image
 #from biking_berlin import images
 try:
     # for normal use
-    from init.image_pathes import ImagePathes # type: ignore
-except:
+    from init.image_pathes import ImagePaths  # type: ignore
+except Exception:
     # for testing purpose - pytest needs this import path
-    from biking_berlin.init.image_pathes import ImagePathes # type: ignore
+    from biking_berlin.init.image_pathes import ImagePaths  # type: ignore
+
 
 class InitialSettings:
 
@@ -53,12 +54,12 @@ class InitialSettings:
         display_number = InitialSettings.set_screen_number()
 
         # If the pygame display module was successfully initialised, go on
-        if display_module_initialised == True:
+        if display_module_initialised:
             screen_info_test = display.Info()
 
             try:
                 # TBD: rm "type: ignore" and check if get_desktop_sizes really does not exist             
-                screen_info = display.get_desktop_sizes() # type: ignore
+                screen_info = display.get_desktop_sizes()  # type: ignore
                 screen_resolution = screen_info[display_number]
             except:
                 print("Screen Information taken from current screen")

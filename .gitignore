@@ -133,3 +133,6 @@ dmypy.json
 
 # Other
 .idea/
+
+#VS code
+.vscode/

@@ -21,13 +21,15 @@ def initialize_pygame():
     window = pygame.display.set_mode((1700, 800))
     pygame.display.set_caption('Biking Berlin')
     screen = pygame.display.get_surface()
-    biking_berlin_placeholder_filename = os.path.join("images", "entry_point_placeholder.png")
+
+    biking_berlin_image_base_path = os.path.join('biking_berlin', 'images')
+    biking_berlin_placeholder_filename = os.path.join(biking_berlin_image_base_path, 'entry_point_placeholder.png')
     biking_berlin_entry_point = pygame.image.load(biking_berlin_placeholder_filename)
+
     screen.blit(biking_berlin_entry_point, (0, 0))
     pygame.display.flip()
 
-
-def user_interrupt(running, events):
+def user_interrupt(running, paused, events):
     for event in events:
         if event.type == QUIT:
             #sys.exit(0)
@@ -37,10 +39,15 @@ def user_interrupt(running, events):
             if (event.key == K_q) or (event.key == K_ESCAPE):
                 print('Quit')
                 running = False
+            elif (event.key == K_p) or (event.key == K_PAUSE):
+                paused = not paused  # Toggle the paused flag
+                if paused:
+                    print('Pause')
+                else:
+                    print('Unpause')
         else:
             print(event)
-    return running
-
+    return running, paused
 
 def main_game_loop() -> None:
 
@@ -57,8 +64,17 @@ def main_game_loop() -> None:
 
     # Game loop
     running = True
+    paused = False
+
     while running:
-        running = user_interrupt(running, pygame.event.get())
+        events = pygame.event.get()
+        running, paused = user_interrupt(running, paused, events)
+
+        #if paused:
+        #    print("Game is paused - add image for unpausing and don't update the game")
+        #else:
+        #    print("This should be the regular case")
+
     pygame.quit()
     
 

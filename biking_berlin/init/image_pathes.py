@@ -1,8 +1,8 @@
 import os
-import pygame
+# import pygame
 
 
-class ImagePathes():
+class ImagePaths():
     """
     Singleton class to create all the image pathes and pathes to the folders
     """
@@ -17,12 +17,12 @@ class ImagePathes():
         return images_folder_path
 
     @classmethod
-    def concatenate_base_path_and_foldername(cls, folder_name_list: list) -> str:
+    def concatenate_base_path_and_folder_name(cls, folder_name_list: list) -> str:
         """Concatenates the basic folder path with the folder names inserted as
         lists and returns it as a string."""
 
         number_of_folders_to_be_concatenated = len(folder_name_list)
-        images_folder_path = ImagePathes.get_basic_path_to_images_folder()
+        images_folder_path = ImagePaths.get_basic_path_to_images_folder()
 
         if number_of_folders_to_be_concatenated == 1:
             folder_path = os.path.join(images_folder_path, str(folder_name_list[0]))
@@ -41,11 +41,11 @@ class ImagePathes():
         base name and the image type to create and return a list of strings
         with the paths."""
         
-        path = ImagePathes.concatenate_base_path_and_foldername(folder_name_list)
+        path = ImagePaths.concatenate_base_path_and_folder_name(folder_name_list)
 
         image_type_valid = False
 
-        if isinstance(image_type, str) == True:
+        if isinstance(image_type, str):
             image_type_valid = True
 
         if (number_of_images == 1) & (image_type_valid == True):
@@ -63,7 +63,7 @@ class ImagePathes():
         """Concatenates the basic folder path with the background image folder
         path and returns it as a string."""
         background_folde_name_list = ['background']
-        background_image_path = ImagePathes.create_pathes_of_images_list(background_folde_name_list, 'background', 1)
+        background_image_path = ImagePaths.create_pathes_of_images_list(background_folde_name_list, 'background', 1)
         return background_image_path
     
     @classmethod
@@ -71,7 +71,7 @@ class ImagePathes():
         """Concatenates the basic folder path with the background image folder
         path and returns it as a string."""
         special_sights_name_list = ['background', 'special_sights']
-        special_sights_folder_path = ImagePathes.concatenate_base_path_and_foldername(special_sights_name_list)
+        special_sights_folder_path = ImagePaths.concatenate_base_path_and_folder_name(special_sights_name_list)
  
         return special_sights_folder_path
 
@@ -80,7 +80,7 @@ class ImagePathes():
         """Concatenates the basic folder path with the pothole image folder
         path and returns it as a string."""
         pothole_folder_name_list = ['pothole']
-        pothole_image_path = ImagePathes.create_pathes_of_images_list(pothole_folder_name_list, 'pothole', 1)
+        pothole_image_path = ImagePaths.create_pathes_of_images_list(pothole_folder_name_list, 'pothole', 1)
         # pothole_image_path = pygame.image.load(os.path.join('biking_berlin', images_folder)).convert()
 
         return pothole_image_path
@@ -89,7 +89,7 @@ class ImagePathes():
     def get_falling_player_images_folder_path(cls) -> list:
         """Concatenates the basic folder path with the fallen player image
         folder path and returns it as a string."""
-        fallen_player_image_folder_path = ImagePathes.create_pathes_of_images_list(ImagePathes.folder_name_list_of_player, 'playerFALLEN', 1)
+        fallen_player_image_folder_path = ImagePaths.create_pathes_of_images_list(ImagePaths.folder_name_list_of_player, 'playerFALLEN', 1)
         # player_image_folder_path = pygame.image.load(os.path.join('biking_berlin', player_folder)).convert()
 
         return fallen_player_image_folder_path
@@ -98,7 +98,7 @@ class ImagePathes():
     def get_running_player_images_folder_path(cls) -> list:
         """Concatenates the basic folder path with the running player images
         folder pathes and returns them as a list of strings."""
-        running_player_image_folder_path_list = ImagePathes.create_pathes_of_images_list(ImagePathes.folder_name_list_of_player, 'playerRUNNING', 8)
+        running_player_image_folder_path_list = ImagePaths.create_pathes_of_images_list(ImagePaths.folder_name_list_of_player, 'playerRUNNING', 8)
 
         return running_player_image_folder_path_list
 
@@ -106,7 +106,7 @@ class ImagePathes():
     def get_jumping_player_images_folder_path(cls) -> list:
         """Concatenates the basic folder path with the running player images
         folder pathes and returns them as a list of strings."""
-        jumping_player_image_folder_path_list = ImagePathes.create_pathes_of_images_list(ImagePathes.folder_name_list_of_player, 'playerJUMPING', 8)
+        jumping_player_image_folder_path_list = ImagePaths.create_pathes_of_images_list(ImagePaths.folder_name_list_of_player, 'playerJUMPING', 8)
 
         return jumping_player_image_folder_path_list
 
@@ -115,7 +115,7 @@ class ImagePathes():
         """Concatenates the basic folder path with the pidgeon images
         folder pathes and returns them as a list of strings."""
         pidgeon_image_folder_name_list = ['pidgeon']
-        pidgeon_image_folder_path_list = ImagePathes.create_pathes_of_images_list(pidgeon_image_folder_name_list, 'PIDGEON', 4)
+        pidgeon_image_folder_path_list = ImagePaths.create_pathes_of_images_list(pidgeon_image_folder_name_list, 'PIDGEON', 4)
 
         return pidgeon_image_folder_path_list
 
@@ -124,7 +124,7 @@ class ImagePathes():
         """Concatenates the basic folder path with the pidgeon images
         folder pathes and returns them as a list of strings."""
         pidgeon_image_folder_name_list = ['vehicles', 'beatle_car']
-        pidgeon_image_folder_path_list = ImagePathes.create_pathes_of_images_list(pidgeon_image_folder_name_list, 'BEATLE', 8)
+        pidgeon_image_folder_path_list = ImagePaths.create_pathes_of_images_list(pidgeon_image_folder_name_list, 'BEATLE', 8)
 
         return pidgeon_image_folder_path_list
 
